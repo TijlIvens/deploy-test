@@ -35,10 +35,10 @@ jobs:
       - name: Set version variable
         run: |
           export VERSION="$(grep 'version' package.json | head -n 1 | cut -d '"' -f4 | tr -d '[[:space:]]')"
-          echo "::set-env name=VERSION::$VERSION"
+          echo "version=$VERSION" >> $GITHUB_ENV
 
       - name: Commit & Push changes
         run: |
-          git add -A && git commit -m "update package version to $VERSION"
+          git add -A && git commit -m "update package version to ${ env.version }"
           remote_branch="https://$GITHUB_ACTOR:${ secrets.GITHUB_TOKEN }@github.com/$GITHUB_REPOSITORY.git"
           git push "${remote_repo}" HEAD:${GITHUB_REF}
