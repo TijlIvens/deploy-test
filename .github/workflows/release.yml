@@ -14,4 +14,5 @@ jobs:
       - name: Yarn install
         run: yarn
 
-      - name: yarn version:${{ github.event.inputs.release-type }}
+      - name: Yarn update version
+        run: yarn version:${{ github.event.inputs.release-type }}
