@@ -6,16 +6,16 @@ echo $VERSION
 
 cd packages/package1
 
-yarn publish --new-version $VERSION --no-git-tag-version --no-commit-hooks
+yarn publish --new-version $VERSION --no-git-tag-version
 
 cd ..
 cd project1
 
-yarn version --new-version $VERSION --no-git-tag-version --no-commit-hooks
+yarn version --new-version $VERSION --no-git-tag-version
 yarn add @tijlivens/package1@^$VERSION
 
 cd ..
 cd project2
 
-yarn version --new-version $VERSION --no-git-tag-version --no-commit-hooks
+yarn version --new-version $VERSION --no-git-tag-version
 yarn add @tijlivens/package1@^$VERSION

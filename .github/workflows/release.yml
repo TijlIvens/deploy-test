@@ -20,8 +20,25 @@ jobs:
       - name: add package token
         run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_REPO_TOKEN }}" >> .npmrc
 
+      - name: cache node modules
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
       - name: Yarn install
         run: yarn
 
       - name: Yarn update version
         run: yarn version:${{ github.event.inputs.release-type }}
+
+      - name: Set version variable
+        run: |
+          export VERSION="$(grep 'version' package.json | head -n 1 | cut -d '"' -f4 | tr -d '[[:space:]]')"
+          echo "::set-env name=VERSION::$VERSION"
+
+      - name: Commit & Push changes
+        run: |
+          git add -A && git commit -m "update package version to $VERSION"
+          remote_branch="https://$GITHUB_ACTOR:${ secrets.GITHUB_TOKEN }@github.com/$GITHUB_REPOSITORY.git"
+          git push "${remote_repo}" HEAD:${GITHUB_REF}

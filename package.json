@@ -17,9 +17,9 @@
     ]
   },
   "scripts": {
-    "version:patch": "yarn version --patch --no-git-tag-version --no-commit-hooks && ./version.sh",
-    "version:minor": "yarn version --minor --no-git-tag-version --no-commit-hooks && ./version.sh",
-    "version:major": "yarn version --major --no-git-tag-version --no-commit-hooks && ./version.sh"
+    "version:patch": "yarn version --patch --no-git-tag-version && ./version.sh",
+    "version:minor": "yarn version --minor --no-git-tag-version && ./version.sh",
+    "version:major": "yarn version --major --no-git-tag-version && ./version.sh"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
