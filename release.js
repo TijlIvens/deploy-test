@@ -1,4 +1,5 @@
 module.exports = async (markdown, metaData) => {
-  console.log({ markdown, metaData });
+  var pjson = require("./package.json");
+  console.log(pjson.version);
   return markdown;
 };
