@@ -115,7 +115,7 @@ module.exports = async (type, preSuffix) => {
     fail(err.message);
   }
 
-  global.spinner.text = 'Found pre-release hook';
+  global.spinner.text = 'Pre-release success';
   createSpinner('Creating release commit');
 
   try {
