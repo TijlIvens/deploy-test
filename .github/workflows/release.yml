@@ -39,6 +39,6 @@ jobs:
 
       - name: Commit & Push changes
         run: |
-          git add -A && git commit -m "update package version to ${ env.version }"
-          remote_branch="https://$GITHUB_ACTOR:${ secrets.GITHUB_TOKEN }@github.com/$GITHUB_REPOSITORY.git"
-          git push "${remote_repo}" HEAD:${GITHUB_REF}
+          git add -A && git commit -m "update package version to ${{ env.version }}"
+          remote_branch="https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
+          git push "$remote_branch" HEAD:$GITHUB_REF
