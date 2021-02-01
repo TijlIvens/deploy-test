@@ -1,6 +1,6 @@
 {
   "name": "deploy-test",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "Tijl",
   "license": "MIT",
   "private": true,
@@ -20,6 +20,7 @@
     "release": "release"
   },
   "devDependencies": {
+    "fs": "^0.0.1-security",
     "release": "vercel/release"
   }
 }
