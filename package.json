@@ -1,6 +1,6 @@
 {
   "name": "deploy-test",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "author": "Tijl",
   "license": "MIT",
   "private": true,
@@ -22,8 +22,8 @@
   },
   "devDependencies": {
     "fs-extra": "5.0.0",
-    "release": "^6.3.0",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "release": "^6.3.0"
   },
   "prettier": {
     "arrowParens": "always",
