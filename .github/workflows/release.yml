@@ -11,6 +11,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo "Hello ${{ github.event.inputs.name }}!"
-          echo "- in ${{ github.event.inputs.home }}!"
+      - name: Yarn install
+        run: yarn
+
+      - name: yarn version:${{ github.event.inputs.release-type }}
