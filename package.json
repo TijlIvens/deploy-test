@@ -1,6 +1,6 @@
 {
   "name": "deploy-test",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "author": "Tijl",
   "license": "MIT",
   "private": true,
@@ -17,8 +17,7 @@
     ]
   },
   "scripts": {
-    "release:patch": "yarn version --patch && version=$npm_package_version && echo $version &&yarn printversion",
-    "printversion": "echo $version"
+    "release:patch": "yarn version --patch && ./release.sh"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
