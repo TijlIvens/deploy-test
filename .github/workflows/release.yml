@@ -44,3 +44,26 @@ jobs:
           git add -A && git commit -m "update package version to ${{ env.version }}"
           remote_branch="https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
           git push "$remote_branch" HEAD:$GITHUB_REF
+
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+
+      - name: Merge to master
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.co"
+          git config --local user.name "github-actions[bot]"
+          git merge $GITHUB_REF
+          remote_branch="https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
+          git push "$remote_branch" master
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: RELEASE-v${{ env.version }}
+          release_name: Release ${{ env.version  }}
+          draft: false
+          prerelease: false
