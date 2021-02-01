@@ -17,7 +17,8 @@
     ]
   },
   "scripts": {
-    "release": "release"
+    "release": "release",
+    "lerna": "lerna"
   },
   "devDependencies": {
     "fs-extra": "5.0.0",

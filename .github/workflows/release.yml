@@ -1,18 +1,14 @@
-name: Manually triggered workflow
+name: Release
 on:
   workflow_dispatch:
     inputs:
-      name:
-        description: 'Person to greet'
+      release-type:
+        description: 'Chose between: major, minor, patch'
         required: true
-        default: 'Mona the Octocat'
-      home:
-        description: 'location'
-        required: false
-        default: 'The Octoverse'
+        default: 'patch'
 
 jobs:
-  say_hello:
+  release:
     runs-on: ubuntu-latest
     steps:
       - run: |
