@@ -56,7 +56,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.co"
           git config --local user.name "github-actions[bot]"
           git fetch ${{ env.REMOTE_ORIGIN }} ${GITHUB_REF#refs/heads/}
-          git merge ${GITHUB_REF#refs/heads/}
+          git merge origin/${GITHUB_REF#refs/heads/}
           git push ${{ env.REMOTE_ORIGIN }} main
 
       - name: Create Release
