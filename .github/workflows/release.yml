@@ -11,6 +11,12 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      - name: use Node.js 15
+        uses: actions/setup-node@v1
+        with:
+          node-version: 15
+
       - name: Yarn install
         run: yarn
 
