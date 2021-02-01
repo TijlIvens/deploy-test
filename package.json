@@ -1,6 +1,6 @@
 {
   "name": "deploy-test",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Tijl",
   "license": "MIT",
   "private": true,
@@ -15,6 +15,9 @@
       "**/react-scripts",
       "**/react-scripts/**"
     ]
+  },
+  "scripts": {
+    "release": "release"
   },
   "devDependencies": {
     "release": "vercel/release"
