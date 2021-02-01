@@ -1,9 +1,13 @@
 const fs = require('fs');
 
 const writFile = async (file, path) => {
-  await fs.writeFile(path, JSON.stringify(file, null, 2) + '/n', (err) => {
-    if (err) return console.log(err);
-  });
+  await fs.writeFile(
+    path,
+    JSON.stringify(file, null, 2).concat('\n'),
+    (err) => {
+      if (err) return console.log(err);
+    },
+  );
 };
 
 module.exports = async (version) => {
