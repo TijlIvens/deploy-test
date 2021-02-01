@@ -110,7 +110,7 @@ module.exports = async (type, preSuffix) => {
   createSpinner('Pre-release hook');
 
   try {
-    //await preRelease(version);
+    await preRelease(version);
   } catch (err) {
     fail(err.message);
   }

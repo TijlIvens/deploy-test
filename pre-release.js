@@ -24,6 +24,4 @@ module.exports = async (version) => {
   );
 
   console.log(version);
-
-  return markdown;
 };
