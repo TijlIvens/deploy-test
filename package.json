@@ -15,5 +15,8 @@
       "**/react-scripts",
       "**/react-scripts/**"
     ]
+  },
+  "devDependencies": {
+    "release": "vercel/release"
   }
 }
