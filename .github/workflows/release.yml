@@ -47,7 +47,8 @@ jobs:
 
       - uses: actions/checkout@v2
         with:
-          ref: master
+          ref: refs/heads/master
+          clean: false
 
       - name: Merge to master
         run: |
