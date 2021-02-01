@@ -47,16 +47,16 @@ jobs:
 
       - uses: actions/checkout@v2
         with:
-          ref: refs/heads/master
+          ref: main
           clean: false
 
-      - name: Merge to master
+      - name: Merge to main
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.co"
           git config --local user.name "github-actions[bot]"
           git merge $GITHUB_REF
           remote_branch="https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
-          git push "$remote_branch" master
+          git push "$remote_branch" main
 
       - name: Create Release
         id: create_release
