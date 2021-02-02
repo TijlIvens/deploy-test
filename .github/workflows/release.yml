@@ -36,9 +36,6 @@ jobs:
             ~/packages/project2/node_modules
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-      # - name: Yarn install
-      #   run: yarn
-
       - name: Yarn update version
         run: yarn version:${{ github.event.inputs.release-type }}
 
@@ -52,9 +49,9 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.co"
           git config --local user.name "github-actions[bot]"
           git add -A && git commit -m "update package version to ${{ env.version }}"
-          git push ${{ env.REMOTE_ORIGIN }} HEAD:$GITHUB_REF
+          git push ${{ env.REMOTE_ORIGIN }}
 
       - name: Create pull request to main
         run: |
           GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} \
-          gh pr create --base main --title RELEASE-v${{ env.version }}
+          gh pr create --base main --head ${GITHUB_REF#refs/heads/} --title RELEASE-v${{ env.version }}
