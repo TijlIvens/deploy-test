@@ -30,11 +30,14 @@ jobs:
       - name: cache node modules
         uses: actions/cache@v2
         with:
-          path: '**/node_modules'
+          path: |
+            **/node_modules
+            ~/packages/project1/node_modules
+            ~/packages/project2/node_modules
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-      - name: Yarn install
-        run: yarn
+      # - name: Yarn install
+      #   run: yarn
 
       - name: Yarn update version
         run: yarn version:${{ github.event.inputs.release-type }}
