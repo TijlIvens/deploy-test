@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Check input
         run: |
-          if ! ([ $type = "major" ] || [ $type = "minor" ] || [ $type = "patch" ]); then  echo "Use major, minor, patch to run this workflow"; exit 0; fi
+          if ! [[ $type = "major" || $type = "minor" || $type = "patch" ]]; then  echo "Use major, minor, patch to run this workflow"; exit 0; fi
           if [ ${GITHUB_REF#refs/heads/} = main ]; then echo "Don't run this workflow on the main branch"; exit 0; fi
 
       - uses: actions/checkout@v2
