@@ -13,6 +13,11 @@ jobs:
     env:
       REMOTE_ORIGIN: https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git
     steps:
+      - name: Check input
+        run: |
+          if ! ([ $type = "major" ] || [ $type = "minor" ] || [ $type = "patch" ]); then  echo "Use major, minor, patch to run this workflow"; exit 0; fi
+          if [ ${GITHUB_REF#refs/heads/} = main ]; then echo "Don't run this workflow on the main branch"; exit 0; fi
+
       - uses: actions/checkout@v2
       - name: use Node.js 15
         uses: actions/setup-node@v1
@@ -46,27 +51,7 @@ jobs:
           git add -A && git commit -m "update package version to ${{ env.version }}"
           git push ${{ env.REMOTE_ORIGIN }} HEAD:$GITHUB_REF
 
-      - name: Merge to main
+      - name: Create pull request to main
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.co"
-          git config --local user.name "github-actions[bot]"
-          git fetch ${{ env.REMOTE_ORIGIN }} main
-          git checkout main
-          git merge ${GITHUB_REF#refs/heads/}
-          git push ${{ env.REMOTE_ORIGIN }} main
-
-      - uses: actions/checkout@v2
-        with:
-          ref: main
-          clean: false
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: RELEASE-v${{ env.version }}
-          release_name: Release ${{ env.version  }}
-          draft: false
-          prerelease: false
+          gh auth login --with-token ${{ secrets.GITHUB_TOKEN }}
+          gh pr create --base main --title RELEASE-v${{ env.version }}
