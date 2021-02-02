@@ -1,10 +1,9 @@
 name: Set release tag
 on:
   pull_request:
+    types: [closed]
     branches:
       - main
-     types: 
-      - closed
 
 jobs:
   release-tag:
