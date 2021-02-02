@@ -27,15 +27,6 @@ jobs:
       - name: add package token
         run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_REPO_TOKEN }}" >> .npmrc
 
-      - name: cache node modules
-        uses: actions/cache@v2
-        with:
-          path: |
-            **/node_modules
-            ~/packages/project1/node_modules
-            ~/packages/project2/node_modules
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
       - name: Yarn update version
         run: yarn version:${{ github.event.inputs.release-type }}
 
@@ -54,4 +45,4 @@ jobs:
       - name: Create pull request to main
         run: |
           GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} \
-          gh pr create --base main --head ${GITHUB_REF#refs/heads/} --title RELEASE-v${{ env.version }}
+          gh pr create --base main --head ${GITHUB_REF#refs/heads/} --title RELEASE-v${{ env.version }} --body release v${{ env.version }}
