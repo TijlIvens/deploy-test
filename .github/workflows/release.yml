@@ -19,6 +19,7 @@ jobs:
           if [ ${GITHUB_REF#refs/heads/} = main ]; then echo "Don't run this workflow on the main branch"; exit 1; fi
 
       - uses: actions/checkout@v2
+
       - name: use Node.js 15
         uses: actions/setup-node@v1
         with:
