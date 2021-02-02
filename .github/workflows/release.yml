@@ -45,4 +45,4 @@ jobs:
       - name: Create pull request to main
         run: |
           GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} \
-          gh pr create --base main --head ${GITHUB_REF#refs/heads/} --title RELEASE-v${{ env.version }} --body release v${{ env.version }}
+          gh pr create --base main --head ${GITHUB_REF#refs/heads/} --title RELEASE-v${{ env.version }} --body release-v${{ env.version }}
