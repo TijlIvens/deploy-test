@@ -1,0 +1,27 @@
+name: Set release tag
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  release-tag:
+    if: github.event.pull_request.merged
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set version variable
+        run: |
+          export VERSION="$(grep 'version' package.json | head -n 1 | cut -d '"' -f4 | tr -d '[[:space:]]')"
+          echo "version=$VERSION" >> $GITHUB_ENV
+
+      - name: Create release tag
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: RELEASE-v${{ env.version }}
+          release_name: Release ${{ env.version  }}
+          draft: false
+          prerelease: false
