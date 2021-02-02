@@ -53,5 +53,5 @@ jobs:
 
       - name: Create pull request to main
         run: |
-          # gh auth login --with-token ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
           gh pr create --base main --title RELEASE-v${{ env.version }}
