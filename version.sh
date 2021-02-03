@@ -12,10 +12,10 @@ cd ..
 cd project1
 
 yarn version --new-version $VERSION --no-git-tag-version
-yarn add @tijlivens/package1@^$VERSION
+lerna add @tijlivens/package1@^$VERSION
 
 cd ..
 cd project2
 
 yarn version --new-version $VERSION --no-git-tag-version
-yarn add @tijlivens/package1@^$VERSION
+lerna add @tijlivens/package1@^$VERSION
